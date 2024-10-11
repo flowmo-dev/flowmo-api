@@ -31,7 +31,7 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
-    const { taskId, duration, date } = req.body;
+    const { taskId, duration, date, records } = req.body;
     const focusSessionRepository = getRepository(FocusSession);
 
     const newFocusSession = focusSessionRepository.create({
@@ -39,6 +39,7 @@ router.post('/', async (req, res) => {
       date: new Date(date),
       user: { id: (req as any).user.id },
       task: { id: taskId },
+      records
     });
 
     await focusSessionRepository.save(newFocusSession);

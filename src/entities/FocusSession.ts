@@ -18,4 +18,12 @@ export class FocusSession {
 
   @ManyToOne(() => Task, (task) => task.focusSessions)
   task: Task;
+
+  @Column('json')
+  records: {
+    type: 'focus' | 'break';
+    duration: number;
+    overTime?: number;
+  }[];
 }
+
